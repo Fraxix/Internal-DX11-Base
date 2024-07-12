@@ -3,7 +3,7 @@
 
 A fully universal internal DX11 base w/ ImGui
 
-I used [this base](https://github.com/NightFyre/DX11-ImGui-Internal-Hook/tree/b44d74cbb20918c1b616190325ee49589b80cf36). as a Base and removed the Console and some other Stuff that i thought wasnt really important.
+I used [this base](https://github.com/NightFyre/DX11-ImGui-Internal-Hook/tree/b44d74cbb20918c1b616190325ee49589b80cf36) and removed the Console and some other Stuff that i thought wasnt really important.
 
 Also i added some Extra Stuff like a Font (RudaBold), a few Improvements and Custom Slider + Custom Checkbox!
 
