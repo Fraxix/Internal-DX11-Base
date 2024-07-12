@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{8053bd14-a382-4c3d-91f9-a76d57638e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{5a23defd-5729-4808-a768-ce21e3dfae2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooking">
+      <UniqueIdentifier>{bee7a983-21ff-4d75-9413-1e0f49f18480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{e3008f0b-be54-4793-b2f0-e445c31a0612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{ba004837-af92-4270-a054-30c98ea94872}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imconfig.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imgui.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imgui_impl_dx11.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imgui_impl_win32.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imgui_internal.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imstb_rectpack.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imstb_textedit.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\imstb_truetype.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\buffer.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\framework.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\hde32.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\hde64.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\hookmain.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\MinHook.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\pstdint.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\resource.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\table32.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\table64.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking\trampoline.h">
+      <Filter>Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui_demo.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui_draw.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui_impl_dx11.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui_impl_win32.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui_tables.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui_widgets.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking\buffer.c">
+      <Filter>Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking\hde32.c">
+      <Filter>Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking\hde64.c">
+      <Filter>Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking\hook.c">
+      <Filter>Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking\hookmain.cpp">
+      <Filter>Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking\trampoline.c">
+      <Filter>Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Hooking\minhook.def">
+      <Filter>Hooking</Filter>
+    </None>
+  </ItemGroup>
+</Project>
