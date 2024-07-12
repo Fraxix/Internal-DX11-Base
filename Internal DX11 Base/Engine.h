@@ -10,6 +10,9 @@ namespace DX11Base
 
 		bool bShowMenu{ false };
 
+		bool TestBool;
+		int TestInt = 5;
+
 		Engine();
 		~Engine();
 	};

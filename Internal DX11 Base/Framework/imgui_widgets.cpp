@@ -44,6 +44,7 @@ Index of this file:
 
 // System includes
 #include <stdint.h>     // intptr_t
+#include <map>
 
 //-------------------------------------------------------------------------
 // Warnings
@@ -1202,6 +1203,16 @@ bool ImGui::CheckboxFlagsT(const char* label, T* flags, T flags_value)
         else
             *flags &= ~flags_value;
     }
+    return pressed;
+}
+
+bool ImGui::SmallCheckbox(const char* label, bool* v)
+{
+    ImGuiContext& g = *GImGui;
+    float backup_padding_y = g.Style.FramePadding.y;
+    g.Style.FramePadding.y = 0.0f;
+    bool pressed = Checkbox(label, v);
+    g.Style.FramePadding.y = backup_padding_y;
     return pressed;
 }
 
@@ -3252,6 +3263,83 @@ bool ImGui::SliderScalarN(const char* label, ImGuiDataType data_type, void* v, i
 
     EndGroup();
     return value_changed;
+}
+struct slider_element {
+    float opacity;
+};
+bool ImGui::CustomSliderScalar(const char* label, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
+{
+    ImGuiWindow* window = GetCurrentWindow();
+    if (window->SkipItems)
+        return false;
+
+    ImGuiContext& g = *GImGui;
+    const ImGuiStyle& style = g.Style;
+    const ImGuiID id = window->GetID(label);
+    const float w = CalcItemWidth();
+
+    const ImVec2 label_size = CalcTextSize(label, NULL, true);
+    const ImRect total_bb((window->DC.CursorPos + ImVec2(10, -10)), window->DC.CursorPos + ImVec2(w, label_size.y + 16));
+    const ImRect frame_bb(window->DC.CursorPos, window->DC.CursorPos + ImVec2(w, label_size.y - 12));
+    //const ImRect frame_bb(window->DC.CursorPos, window->DC.CursorPos + ImVec2(w, label_size.y + style.FramePadding.y * 2.0f));
+
+    ItemSize(total_bb, style.FramePadding.y);
+    if (!ItemAdd(total_bb, id, &frame_bb))
+        return false;
+
+    // Default format string when passing NULL
+    if (format == NULL)
+        format = DataTypeGetInfo(data_type)->PrintFmt;
+    //  else if (data_type == ImGuiDataType_S32 && strcmp(format, "%d") != 0) // (FIXME-LEGACY: Patch old "%.0f" format string to use "%d", read function more details.)
+    //      format = PatchFormatStringFloatToInt(format);
+
+      // Tabbing or CTRL-clicking on Slider turns it into an input box
+    const bool hovered = ItemHoverable(frame_bb, id, 0);
+    const bool clicked = (hovered && g.IO.MouseClicked[0]);
+    if (clicked)
+    {
+        SetActiveID(id, window);
+        SetFocusID(id, window);
+        FocusWindow(window);
+        g.ActiveIdUsingNavDirMask |= (1 << ImGuiDir_Left) | (1 << ImGuiDir_Right);
+    }
+
+    static std::map <ImGuiID, slider_element> anim;
+    auto it_anim = anim.find(id);
+    if (it_anim == anim.end())
+    {
+        anim.insert({ id, { 0.0f } });
+        it_anim = anim.find(id);
+    }
+
+    it_anim->second.opacity = ImLerp(it_anim->second.opacity, IsItemActive() ? 1.0f : 0.4f, 0.08f * (1.0f - ImGui::GetIO().DeltaTime));
+
+    ImRect grab_bb;
+    const bool value_changed = SliderBehavior(frame_bb, id, data_type, p_data, p_min, p_max, format, flags, &grab_bb);
+    if (value_changed)
+        MarkItemEdited(id);
+
+    char value_buf[64];
+    const char* value_buf_end = value_buf + DataTypeFormatString(value_buf, IM_ARRAYSIZE(value_buf), data_type, p_data, format);
+
+    window->DrawList->AddRectFilled(frame_bb.Min, frame_bb.Max, ImColor(15, 15, 16), 5.0f);
+    window->DrawList->AddRectFilled(frame_bb.Min, ImVec2(grab_bb.Min.x + 3, frame_bb.Max.y), ImColor(219, 219, 219), 5.0f);
+    window->DrawList->AddCircleFilled(ImVec2(grab_bb.Min.x, grab_bb.Min.y), 5.5f, ImColor(1.0f, 1.0f, 1.0f), 30);
+
+    RenderText(ImVec2(frame_bb.Max.x + style.ItemInnerSpacing.x, (frame_bb.Min.y - 10) + style.FramePadding.y), value_buf);
+
+    PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, it_anim->second.opacity)); {
+        //Might Remove or Change Later
+       // RenderTextClipped(total_bb.Min, total_bb.Max, value_buf, value_buf_end, NULL, ImVec2(1.f, 0.f));
+    } PopStyleColor();
+
+    IMGUI_TEST_ENGINE_ITEM_INFO(id, label, window->DC.ItemFlags);
+    return value_changed;
+}
+
+bool ImGui::CustomSliderInt(const char* label, int* v, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+{
+    return CustomSliderScalar(label, ImGuiDataType_S32, v, &v_min, &v_max, format, flags);
 }
 
 bool ImGui::SliderFloat(const char* label, float* v, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
