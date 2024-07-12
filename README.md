@@ -9,7 +9,7 @@ Also i added some Extra Stuff like a Font (RudaBold), a few Improvements and Cus
 
 I will keep working on it for some time because there is still something i wanna add but for now it works great!
 
-Credits to  for the Base!
+Credits to [NightFyre](https://github.com/NightFyre) for the Base!
 ## Screenshots
 
 ![Sekiro: Shadows Die Twice](https://github.com/user-attachments/assets/6164f712-bc29-4261-a86d-39b0a61f27d0)
